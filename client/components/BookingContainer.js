@@ -9,28 +9,28 @@ var BookingContainer = React.createClass({
       e.preventDefault();
       var clientName = this.state.clientName,
           clientPhone = this.state.clientPhone,
+          coachId = "default-coach", // TODO: set state
           sessionDate = this.state.dateSelected,
           sessionTime = this.state.timeSelected.value,
-          sessionId = sessionDate + "_" + sessionTime,
-          appointment = {
-            "id": sessionId,
+          sessionId = coachId + "_" + sessionDate + "T" + sessionTime,
+          session = {
             "clientName": clientName,
             "clientPhone": clientPhone,
             "coachId": "d3ming",
             "date": sessionDate.format("YYYY-MM-DD"),
             "time": this.state.timeSelected.value
           };
-      console.log('Booked appointment!  ', appointment);
+      console.log('Booked session!  ', session);
       $.ajax({
-        url: '/api/v1/sessions',
+        url: '/api/v1/sessions/' + sessionId,
         dataType: 'json',
-        type: 'POST',
-        data: appointment,
+        type: 'PUT',
+        data: session,
         success: function(data) {
-          console.log('Successfully posted, data: ', data);
+          console.log('Successfully booked session, data: ', data);
         }.bind(this),
         error: function(xhr, status, err) {
-          console.error('Error posting! Error: ', err);
+          console.error('Error booking session! Error: ', err);
         }.bind(this)
       });
       this.context.router.push({
