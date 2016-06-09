@@ -13,6 +13,9 @@ eslint:
 flake:
 	flake8 **/*.py
 
+.PHONY: test
+test: pytest
+
 .PHONY: pytest
 pytest: install
 	PYTHONPATH=server py.test --cov-config .coveragerc --cov-report=term-missing --cov=server server/test/ -v

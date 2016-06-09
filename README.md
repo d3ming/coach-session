@@ -3,9 +3,11 @@
 Effortlessly book a coaching session
 
 # Develop:
-`npm install` to install
-`npm run start` to start server
+`make install` to install
+`make start` to start server
 
+# Testing
+`make test` to run tests
 
 ## Problem
 - 1:1 client / coach relationship
@@ -21,7 +23,9 @@ Effortlessly book a coaching session
 - Can only book hourly on the hour
 
 ### Decisions
-- UI:
+- Client:
   - ReactJS
   - Calendar: https://github.com/react-component/calendar
   - Select: http://jedwatson.github.io/react-select/
+- Server
+  - Flask + Flask-Restful
