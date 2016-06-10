@@ -17,13 +17,22 @@ var TimeSelect = function(props) {
     { value: '16', label: '4PM' },
   ];
 
+  var getOptions = function(input, callback) {
+    setTimeout(function() {
+      callback(null, {
+        options: timeSlots,
+        complete: true
+      });
+    }, 500);
+  };
+
   return (
-          <Select
+          <Select.Async
               name="form-field-name"
               autosize={true}
               placeholder="Select a time slot"
               value={props.timeSelected}
-              options={timeSlots}
+              loadOptions={getOptions}
               onChange={props.onChange}
           />
           );
