@@ -10,7 +10,7 @@ lint: flake eslint
 
 .PHONY: eslint
 eslint:
-	eslint client/**/*.js
+	./node_modules/eslint/bin/eslint.js client/**/*.js
 
 .PHONY: flake
 flake:
