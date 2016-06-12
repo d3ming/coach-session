@@ -9,3 +9,12 @@ dependencies:
 test:
   override:
     - make test
+
+deployment:
+  # When code passes CI in develop, automatically push into master
+  push_to_master:
+    owner: d3ming
+    branch: develop
+    commands:
+      - git fetch origin
+      - git push origin HEAD:refs/heads/master

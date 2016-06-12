@@ -20,8 +20,8 @@ flake:
 test: lint pytest
 
 .PHONY: pytest
-pytest: install
-	PYTHONPATH=server py.test --cov-config .coveragerc --cov-report=term-missing --cov=server server/test/ -v
+pytest:
+	PYTHONPATH=server py.test -s -vv --cov-config .coveragerc --cov-report=term-missing --cov=server server/test/
 
 .PHONY: webpack
 webpack:
