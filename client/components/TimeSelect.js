@@ -2,26 +2,26 @@ import React, {PropTypes} from 'react';
 
 import Select from 'react-select';
 
-var TimeSelect = React.createClass({
-  propTypes:  {
-    onChange: PropTypes.func.isRequired,
-    timeSelected: PropTypes.object
-    // dateSelected: 
-  },
-
-  render: function() {
+var TimeSelect = function(props) {
     return (
             <Select
                 name="form-field-name"
                 autosize={true}
                 placeholder="Select a time slot"
-                value={this.props.timeSelected}
-                options={this.props.timeOptions}
-                onChange={this.props.onChange}
-                disabled={this.props.dateSelected == null}
+                value={props.timeSelected}
+                options={props.timeOptions}
+                onChange={props.onChange}
+                disabled={props.dateSelected == null}
             />
-            );
-    }
-});
+          );
+}
+
+TimeSelect.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    timeSelected: PropTypes.object,
+    timeOptions: PropTypes.array.isRequired
+    // dateSelected: 
+  },
+
 
 module.exports = TimeSelect;

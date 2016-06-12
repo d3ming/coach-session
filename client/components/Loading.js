@@ -25,7 +25,7 @@ var Loading = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            text: 'Loading',
+            text: '',
             speed: 300
         }
     },
