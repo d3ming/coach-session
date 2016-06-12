@@ -15,6 +15,15 @@ import os
 logging.basicConfig(level=logging.DEBUG)
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), 'sessions.json')
+INITIAL_DATA = {
+    "default-coach_1467270000000T8": {
+        "clientName": "Dong Ming",
+        "clientPhone": "425-999-9457",
+        "coachId": "default-coach",
+        "date": "2016-06-30",
+        "time": "8"
+    }
+}
 
 
 def parse_request_args():
@@ -38,6 +47,9 @@ def get_filtered_sessions(key, value, data):
 
 
 def load_sessions_data(data_filename=DATA_FILE):
+    if not os.path.exists(DATA_FILE):
+        return INITIAL_DATA
+
     with open(data_filename) as fp:
         data = json.load(fp)
         logging.debug('Loaded session data: %s', data)
