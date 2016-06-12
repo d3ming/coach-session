@@ -7,6 +7,7 @@ Effortlessly book a coaching session
 `make start` to start server
 
 # Testing
+`make lint` to run linters
 `make test` to run tests
 
 ## Problem
@@ -18,15 +19,15 @@ Effortlessly book a coaching session
 ### Assumptions for MVP:
 - Client logged in (no login needed)
 - Client already mapped to a designated coach
-- Client books an appointment for one month and it auto-recurs
-- A coach will have at most ~160 clients
-- Can only book hourly on the hour
+- A coach will have at most ~160 clients (not a huge set)
+- Fixed time slots: can only book hourly appointments on the hour
 
 ### Decisions
 - Client:
   - [ReactJS](https://facebook.github.io/react/)
-    - [react-datepicker](https://github.com/Hacker0x01/react-datepicker)
+    - [react-infinite-calendar](http://clauderic.github.io/react-infinite-calendar/#/?_k=1tjrjo)
     - [react-select](https://github.com/JedWatson/react-select)
+    - [react-bootstrap](https://react-bootstrap.github.io/)
 - Server
   - [Flask](http://flask.pocoo.org/)
     - [flask-restful](https://github.com/flask-restful/flask-restful)

@@ -1,67 +1,65 @@
 import React, {PropTypes} from 'react';
-import {transparentBg} from '../styles';
-
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
 import TimeSelect from './TimeSelect'
-
-require('react-datepicker/dist/react-datepicker.css');
+import { ButtonToolbar, Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import MainContainer from './MainContainer';
+import DateSelect from './DateSelect';
 
 var Booking = function(props) {
-    const calMinDate = moment();
-
     return (  
+      <MainContainer>
+          <h2>Book Coaching Session</h2>
 
-      <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
-          <h1>Book Coaching Session</h1>
-
-          <div className="col-sm-12">
+          <div className="col-sm-12 text-left">
               <form onSubmit={props.onBookSession}>
+                <p/>
+                <FormGroup controlId="formClientInfo">
+                  <ControlLabel>Name:</ControlLabel>
+                  <FormControl
+                      type="text"
+                      value={props.clientName}
+                      onChange={props.onUpdateClientName}
+                      placeholder="Name" />
+                  <p/>
+                  <ControlLabel>Phone:</ControlLabel>
+                  <FormControl
+                      type="text"
+                      value={props.clientPhone}
+                      onChange={props.onUpdateClientPhone}
+                      placeholder="Phone Number"/> 
+                </FormGroup>
 
-                <h3> Appointment Details:</h3>
-                <div className="form-group">
-                  Name: <input
-                    type="text"
-                    className="input-small"
-                    value={props.clientName}
-                    onChange={props.onUpdateClientName}
-                    placeholder="Name" 
-                    display="inline-block" /><p/>
-                  Phone: <input
-                    type="text"
-                    className="input-small"
-                    value={props.clientPhone}
-                    onChange={props.onUpdateClientPhone}
-                    placeholder="Phone Number" 
-                    display="inline-block" /><p/>
-                  Date: 
-                    <DatePicker
-                      selected={props.dateSelected}
-                      minDate = {calMinDate}
-                      placeholderText="Select a date" 
-                      dateFormat="YYYY-MM-DD"
-                      onChange={props.onDateSelect}
-                    /><p/>
-                  Time:
-                    <TimeSelect
-                      onChange={props.onTimeSelect}
-                      timeSelected={props.timeSelected}
-                      //sessionsData={props.sessionsData}
-                      dateSelected={props.dateSelected} // TODO: Refactor for disabled
-                      timeOptions={props.timeOptions}
-                    />
-                </div>
+                <FormGroup controlId="formDateTime">
+                  <ControlLabel>Date: </ControlLabel>
+                  <DateSelect
+                    dateSelected={props.dateSelected}
+                    onDateSelect={props.onDateSelect}
+                  /><p/>
+                  <TimeSelect
+                    onChange={props.onTimeSelect}
+                    timeSelected={props.timeSelected}
+                    dateSelected={props.dateSelected} // TODO: Refactor for disabled
+                    timeOptions={props.timeOptions}
+                  />
+                </FormGroup>
 
-                <div className="form-group col-sm-4 col-sm-offset-4">
-                    <button
-                        className="btn btn-block btn-success"
+                <div className="text-center">
+                  <ButtonToolbar>
+                    <Button
+                        bsStyle="success"
+                        bsSize="large"
                         type="submit">
                             Book!
-                    </button>
+                    </Button>
+                    <Button type="submit"
+                            bsSize="large"
+                            href="/">
+                            Cancel
+                    </Button>
+                  </ButtonToolbar>
                 </div>
             </form>
           </div>
-      </div>
+      </MainContainer>
             )
 }
 

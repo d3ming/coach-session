@@ -1,10 +1,13 @@
 import React, {PropTypes} from 'react';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 var Session = function(props) {
     return (
             <div>
               <p></p>
-              <button type="button" className="btn btn-secondary">{props.sessionLabel}</button>
+              <DropdownButton title={props.sessionLabel} id={props.sessionLabel}>
+                <MenuItem eventKey="1">Cancel</MenuItem>
+              </DropdownButton>
             </div>
           );
 }

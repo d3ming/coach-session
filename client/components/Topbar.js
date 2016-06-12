@@ -1,21 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { NavItem, Nav } from 'react-bootstrap';
 
 
 var Topbar = function(props) {
     return (
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-                <Link to='/'>
-                  <button type="button" className="btn btn-default navbar-btn">Home</button>
-                </Link>
-            <span className="navbar-text navbar-right">Coach sessions for {props.clientName}</span>
-
-            </div>
-          </div>
-        </nav>
-            );
+        <Nav bsStyle="tabs" activeKey={1}>
+          <NavItem eventKey={1} href='/'>Home</NavItem>
+          <NavItem eventKey={2} disabled>Coach sessions for {props.clientName}</NavItem>
+        </Nav>
+    );
 }
 
 module.exports = Topbar;

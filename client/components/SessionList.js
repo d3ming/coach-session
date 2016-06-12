@@ -16,7 +16,7 @@ var SessionList = function(props) {
 
   return (
           <div className="sessionsList">
-            <h2>Current Sessions</h2>
+            <h2>Booked Sessions</h2>
               {sessionsList}
             <h2></h2>
           </div>

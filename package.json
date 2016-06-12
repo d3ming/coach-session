@@ -11,13 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.9.1",
+    "jquery": "^3.0.0",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.1.0",
-    "react-datepicker": "^0.27.0",
+    "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
-    "react-infinite-calendar": "^1.1.12",
+    "react-infinite-calendar": "^1.1.14",
     "react-router": "^2.4.0",
     "react-select": "^1.0.0-beta13"
   },

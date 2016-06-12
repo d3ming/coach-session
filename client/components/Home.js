@@ -1,9 +1,10 @@
 import React from 'react';
 import MainContainer from './MainContainer';
 import SessionList from './SessionList';
-import BookSessionButton from './BookSessionButton';
 import _ from "lodash";
 import Loading from "./Loading"
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 // TOOD: Figure out if this is the right place
 import 'react-select/dist/react-select.css';
@@ -87,7 +88,9 @@ var Home = React.createClass({
     return {
       isLoading: true,
       sessionsData: {},
-      coachId: "default-coach"
+      clientName: "Dong Ming",
+      clientPhone: "425-999-9457",
+      coachId: "default-coach",
     }
   },
 
@@ -97,7 +100,9 @@ var Home = React.createClass({
         :
       <MainContainer>
           <SessionList sessionsList={this.state.sessionsList} />
-          <BookSessionButton />
+          <Link to='/booking'>
+            <Button bsStyle="primary" bsSize="large">Book Session!</Button>
+          </Link>
       </MainContainer>
   }
 });

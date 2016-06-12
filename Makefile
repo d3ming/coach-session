@@ -14,7 +14,7 @@ flake:
 	flake8 **/*.py
 
 .PHONY: test
-test: pytest
+test: lint pytest
 
 .PHONY: pytest
 pytest: install

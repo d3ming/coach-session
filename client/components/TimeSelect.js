@@ -3,17 +3,18 @@ import React, {PropTypes} from 'react';
 import Select from 'react-select';
 
 var TimeSelect = function(props) {
-    return (
-            <Select
-                name="form-field-name"
-                autosize={true}
-                placeholder="Select a time slot"
-                value={props.timeSelected}
-                options={props.timeOptions}
-                onChange={props.onChange}
-                disabled={props.dateSelected == null}
-            />
-          );
+      return props.dateSelected == null
+        ? <div></div>
+        :
+        <Select
+            name="form-field-name"
+            autosize={true}
+            placeholder="Select a time slot"
+            value={props.timeSelected}
+            options={props.timeOptions}
+            onChange={props.onChange}
+            disabled={props.dateSelected == null}
+        />
 }
 
 TimeSelect.propTypes = {

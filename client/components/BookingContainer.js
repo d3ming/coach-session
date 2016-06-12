@@ -1,6 +1,7 @@
 var React = require('react');
 var Booking = require('./Booking');
 import _ from 'lodash';
+import $ from 'jquery'
 
 var BookingContainer = React.createClass({
     contextTypes: {
@@ -119,7 +120,7 @@ var BookingContainer = React.createClass({
             clientName: "Dong Ming",
             clientPhone: "425-999-9457",
             coachId: "default-coach",
-            dateSelected: null,
+            dateSelected: {},
             timeSelected: null,
             sessionsData: {},
             timeOptions: this.defaultTimeOptions
