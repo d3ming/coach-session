@@ -1,6 +1,8 @@
 machine:
   python:
     version: 2.7.6
+  environment:
+    CODECLIMATE_REPO_TOKEN: f031c65dc5c46d48d0c20dbb511c8b40a10119b52ef8b9fff2188da0e5b4b4c6
 
 dependencies:
   override:
@@ -10,6 +12,8 @@ test:
   override:
     - make lint
     - make pytest
+    - codeclimate-test-reporter
+
 
 deployment:
   # When code passes CI in develop, automatically push into master

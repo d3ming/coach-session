@@ -1,7 +1,8 @@
-[![CircleCI](https://circleci.com/gh/d3ming/coach-session/tree/master.svg?style=svg)](https://circleci.com/gh/d3ming/
-[![Stories in Ready](https://badge.waffle.io/d3ming/coach-session.png?label=ready&title=Ready)](https://waffle.io/d3ming/
-coach-session/tree/master)
-coach-session)
+[![CircleCI](https://circleci.com/gh/d3ming/coach-session/tree/master.svg?style=svg)](https://circleci.com/gh/d3ming/coach-session/tree/master)
+[![Code Climate](https://codeclimate.com/github/d3ming/coach-session/badges/gpa.svg)](https://codeclimate.com/github/d3ming/coach-session)
+[![Test Coverage](https://codeclimate.com/github/d3ming/coach-session/badges/coverage.svg)](https://codeclimate.com/github/d3ming/coach-session/coverage)
+[![Stories in Ready](https://badge.waffle.io/d3ming/coach-session.png?label=ready&title=Ready)](https://waffle.io/d3ming/coach-session)
+
 # COACH-SESSION
 
 Effortlessly book a coaching session
