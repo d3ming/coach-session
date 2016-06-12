@@ -10,7 +10,7 @@ lint: flake eslint
 
 .PHONY: eslint
 eslint:
-	eslint client/**/*.js
+	./node_modules/eslint/bin/eslint.js client/**/*.js
 
 .PHONY: flake
 flake:
@@ -20,8 +20,8 @@ flake:
 test: lint pytest
 
 .PHONY: pytest
-pytest: install
-	PYTHONPATH=server py.test --cov-config .coveragerc --cov-report=term-missing --cov=server server/test/ -v
+pytest:
+	PYTHONPATH=server py.test --cov-config .coveragerc --cov-report=term-missing --cov=server server/test/
 
 .PHONY: webpack
 webpack:

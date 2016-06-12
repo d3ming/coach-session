@@ -1,0 +1,21 @@
+machine:
+  python:
+    version: 2.7.6
+
+dependencies:
+  override:
+    - make install
+    - make webpack
+test:
+  override:
+    - make lint
+    - make pytest
+
+deployment:
+  # When code passes CI in develop, automatically push into master
+  push_to_master:
+    owner: d3ming
+    branch: develop
+    commands:
+      - git fetch origin
+      - git push origin HEAD:refs/heads/master

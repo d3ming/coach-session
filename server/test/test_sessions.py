@@ -30,6 +30,8 @@ def test_sessions_get_date():
     sessions = test_session_list()
     sessions.args = {"date": "2016-06-06"}
     res, status = sessions.get()
+    print (res, status)
+    assert status == 200
     assert len(res) == 2
     assert "coach1_2016-06-06T10" in res
     assert "d3ming_2016-06-06T10" in res

@@ -1,4 +1,7 @@
-[![Stories in Ready](https://badge.waffle.io/d3ming/coach-session.png?label=ready&title=Ready)](https://waffle.io/d3ming/coach-session)
+[![CircleCI](https://circleci.com/gh/d3ming/coach-session/tree/master.svg?style=svg)](https://circleci.com/gh/d3ming/
+[![Stories in Ready](https://badge.waffle.io/d3ming/coach-session.png?label=ready&title=Ready)](https://waffle.io/d3ming/
+coach-session/tree/master)
+coach-session)
 # COACH-SESSION
 
 Effortlessly book a coaching session

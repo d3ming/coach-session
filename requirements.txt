@@ -2,3 +2,5 @@
 flask
 pytest
 flask-restful
+flake8
+pytest-cov

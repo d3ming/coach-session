@@ -47,7 +47,9 @@ def get_filtered_sessions(key, value, data):
 
 
 def load_sessions_data(data_filename=DATA_FILE):
-    if not os.path.exists(DATA_FILE):
+    # TODO: This is hacky, we should assert instead
+    if not os.path.exists(data_filename):
+        logging.warn('File does not exist at %s', data_filename)
         return INITIAL_DATA
 
     with open(data_filename) as fp:
@@ -133,7 +135,8 @@ class SessionList(Resource):
                 result = self.data
 
             value = self.args[key]
-            self.logger.debug('Got arg %s with value %s', key, value)
+            self.logger.debug('Filtering %s with key/value:  (%s, %s)',
+                              result, key, value)
             result = get_filtered_sessions(key, value, result)
             logging.debug("filter_sessions_with_args result from %s: %s",
                           key, result)
