@@ -1,49 +1,24 @@
 import pytest
 from flask import Flask
+import sessions
 from sessions import SessionList, Session
-
-TEST_SESSION_DATA = {
-    'd3ming_2016-06-06T10': {
-        "coachId": "d3ming",
-        "clientPhone": "425-999-9457",
-        "clientName": "Dong Ming",
-        "time": "10",
-        "date": "2016-06-06"
-    },
-    'coach1_2016-06-06T10': {
-        "coachId": "coach1",
-        "clientPhone": "425-999-9457",
-        "clientName": "Dong Ming",
-        "time": "10",
-        "date": "2016-06-06"
-    },
-    'coach2_2016-23-06T10': {
-        "clientPhone": "425-999-9457",
-        "coachId": "coach2",
-        "time": "11",
-        "date": "2016-06-23",
-        "clientName": "Dong Ming"
-    },
-    "default-coach_1467270000000T8": {
-        "clientName": "Dong Ming",
-        "clientPhone": "425-999-9457",
-        "coachId": "default-coach",
-        "date": "2016-06-30",
-        "time": "8"
-    }
-}
+import os
 
 TEST_APP = Flask(__name__)
+
+TEST_FILE = os.path.join(os.path.dirname(__file__), 'test_sessions.json')
+TEST_SESSION_DATA = sessions.load_sessions_data(TEST_FILE)
 
 
 @pytest.fixture
 def test_session_list():
-    return SessionList(data=TEST_SESSION_DATA, args={})
+    return SessionList(
+        data=TEST_SESSION_DATA, args={})
 
 
 @pytest.fixture
 def test_session():
-    return Session(sessions=TEST_SESSION_DATA)
+    return Session(sessions=TEST_SESSION_DATA, test_mode=True)
 
 
 def test_sessions_get():
@@ -165,7 +140,7 @@ def test_session_put():
 
 
 def test_session_delete():
-    test_id = 'coach2_2016-23-06T10'
+    test_id = 'test_put_id'
     assert test_id in test_session().sessions
     result = test_session().delete(test_id)
     assert result == ('', 204)

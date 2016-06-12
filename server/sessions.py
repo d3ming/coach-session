@@ -7,35 +7,14 @@ POST /api/v1/sessions/:id
 GET /api/v1/sessions?coachid=coach1&date=2016-06-06&time=11
 """
 import logging
+import json
 from flask_restful import Resource, abort, reqparse
+import os
 
 # TODO: Set to higher for release
 logging.basicConfig(level=logging.DEBUG)
 
-# TODO: Super hacky way to store data
-SESSION_DATA = {
-    'd3ming_2016-06-06T10': {
-        "coachId": "default-coach",
-        "clientPhone": "425-999-9457",
-        "clientName": "Dong Ming",
-        "time": "10",
-        "date": "2016-07-06"
-    },
-    'coach1_2016-06-06T10': {
-        "coachId": "coach1",
-        "clientPhone": "425-999-9457",
-        "clientName": "Dong Ming",
-        "time": "10",
-        "date": "2016-07-06"
-    },
-    'coach2_2016-06-06T10': {
-        "clientPhone": "425-999-9457",
-        "coachId": "default-coach",
-        "time": "11",
-        "date": "2016-06-23",
-        "clientName": "Dong Ming"
-    },
-}
+DATA_FILE = os.path.join(os.path.dirname(__file__), 'sessions.json')
 
 
 def parse_request_args():
@@ -58,13 +37,28 @@ def get_filtered_sessions(key, value, data):
     return result
 
 
+def load_sessions_data(data_filename=DATA_FILE):
+    with open(data_filename) as fp:
+        data = json.load(fp)
+        logging.debug('Loaded session data: %s', data)
+    return data
+
+
 class Session(Resource):
-    def __init__(self, sessions=None, args=None):
+    def __init__(self, sessions=None, args=None, test_mode=False):
         if not sessions:
             # dependency injection
-            sessions = SESSION_DATA
+            sessions = load_sessions_data()
         self.sessions = sessions
         self.args = args
+        self.test_mode = test_mode
+
+    def save_sessions_data(self, data_filename=DATA_FILE):
+        with open(data_filename, 'w') as fp:
+            if not self.test_mode:
+                # Don't bother saving file for tests
+                json.dump(self.sessions, fp)
+                logging.debug('Saved sessions data: %s', self.sessions)
 
     def _handle_session_not_found(self, session_id):
         if session_id not in self.sessions:
@@ -77,6 +71,7 @@ class Session(Resource):
     def delete(self, session_id):
         self._handle_session_not_found(session_id)
         del self.sessions[session_id]
+        self.save_sessions_data()
         return '', 204
 
     def put(self, session_id):
@@ -91,13 +86,14 @@ class Session(Resource):
             'time': self.args['time'],
         }
         self.sessions[session_id] = session
+        self.save_sessions_data()
         return session, 201
 
 
 class SessionList(Resource):
     def __init__(self, data=None, args=None):
         if not data:
-            data = SESSION_DATA
+            data = load_sessions_data()
         self.data = data
         self.args = args
         self.logger = logging.getLogger('sessions')
