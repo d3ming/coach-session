@@ -133,7 +133,8 @@ class SessionList(Resource):
                 result = self.data
 
             value = self.args[key]
-            self.logger.debug('Got arg %s with value %s', key, value)
+            self.logger.debug('Filtering %s with key/value:  (%s, %s)',
+                              result, key, value)
             result = get_filtered_sessions(key, value, result)
             logging.debug("filter_sessions_with_args result from %s: %s",
                           key, result)
