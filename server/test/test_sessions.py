@@ -24,6 +24,13 @@ TEST_SESSION_DATA = {
         "date": "2016-06-23",
         "clientName": "Dong Ming"
     },
+    "default-coach_1467270000000T8": {
+        "clientName": "Dong Ming",
+        "clientPhone": "425-999-9457",
+        "coachId": "default-coach",
+        "date": "2016-06-30",
+        "time": "8"
+    }
 }
 
 TEST_APP = Flask(__name__)
@@ -40,17 +47,17 @@ def test_session():
 
 
 def test_sessions_get():
-    result = test_session_list().get()
-    assert result == TEST_SESSION_DATA
+    res, status = test_session_list().get()
+    assert res == TEST_SESSION_DATA
 
 
 def test_sessions_get_date():
     sessions = test_session_list()
     sessions.args = {"date": "2016-06-06"}
-    result = sessions.get()
-    assert len(result) == 2
-    assert "coach1_2016-06-06T10" in result
-    assert "d3ming_2016-06-06T10" in result
+    res, status = sessions.get()
+    assert len(res) == 2
+    assert "coach1_2016-06-06T10" in res
+    assert "d3ming_2016-06-06T10" in res
 
 
 def test_sessions_get_specific():
@@ -60,9 +67,9 @@ def test_sessions_get_specific():
         "coachId": "d3ming",
         "time": "10"
     }
-    result = sessions.get()
-    assert len(result) == 1
-    assert "d3ming_2016-06-06T10" in result
+    res, status = sessions.get()
+    assert len(res) == 1
+    assert "d3ming_2016-06-06T10" in res
 
 
 def test_sessions_get_notfound():
@@ -71,7 +78,33 @@ def test_sessions_get_notfound():
         "coachId": "coach_not_found",
     }
     response, status = sessions.get()
-    assert status == 404, "We should return 404 when no result is found"
+    assert len(response) == 0, "We should return 404 when no result is found"
+
+
+def test_sessions_get_compound():
+    sessions = test_session_list()
+    # There's a session with 'default-coach', but not with that date
+    sessions.args = {
+        "coachId": "default-coach",
+        "date": "1467010800000"
+    }
+    response, status = sessions.get()
+    assert len(response) == 0, "Should not have found a session!"
+
+    # Test exact match of one
+    sessions.args = {
+        "clientName": "Dong Ming",
+        "clientPhone": "425-999-9457",
+        "coachId": "default-coach",
+    }
+    res, status = sessions.get()
+    assert res == {"default-coach_1467270000000T8": {
+        "clientName": "Dong Ming",
+        "clientPhone": "425-999-9457",
+        "coachId": "default-coach",
+        "date": "2016-06-30",
+        "time": "8"
+    }}
 
 
 def test_sessions_get_none_value():
@@ -82,10 +115,10 @@ def test_sessions_get_none_value():
         "coachId": None,
         "time": None
     }
-    result = sessions.get()
-    assert len(result) == 2
-    assert "coach1_2016-06-06T10" in result
-    assert "d3ming_2016-06-06T10" in result
+    res, status = sessions.get()
+    assert len(res) == 2
+    assert "coach1_2016-06-06T10" in res
+    assert "d3ming_2016-06-06T10" in res
 
 
 def test_sessions_no_params():
@@ -99,7 +132,7 @@ def test_sessions_no_params():
     }
 
     result = sessions.get()
-    assert result == TEST_SESSION_DATA
+    assert result == (TEST_SESSION_DATA, 200)
 
 
 def test_session_get():

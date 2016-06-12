@@ -7,9 +7,6 @@ import TimeSelect from './TimeSelect'
 
 require('react-datepicker/dist/react-datepicker.css');
 
-// TODO: Add time selector
-//import Select from 'react-select';
-
 var Booking = function(props) {
     const calMinDate = moment();
 
@@ -49,6 +46,9 @@ var Booking = function(props) {
                     <TimeSelect
                       onChange={props.onTimeSelect}
                       timeSelected={props.timeSelected}
+                      //sessionsData={props.sessionsData}
+                      dateSelected={props.dateSelected} // TODO: Refactor for disabled
+                      timeOptions={props.timeOptions}
                     />
                 </div>
 
@@ -72,7 +72,7 @@ Booking.propTypes = {
   onUpdateClientName: PropTypes.func.isRequired,
   onUpdateClientPhone: PropTypes.func.isRequired,
   onBookSession: PropTypes.func.isRequired,
-  //dateSelected: PropTypes.date.isRequired,
+  //dateSelected: PropTypes.number.isRequired,
   onTimeSelect: PropTypes.func.isRequired,
   timeSelected: PropTypes.object
 }

@@ -19,13 +19,14 @@ Effortlessly book a coaching session
 - Client logged in (no login needed)
 - Client already mapped to a designated coach
 - Client books an appointment for one month and it auto-recurs
-- Coach will have at most ~160 clients
+- A coach will have at most ~160 clients
 - Can only book hourly on the hour
 
 ### Decisions
 - Client:
-  - ReactJS
-  - Calendar: https://github.com/react-component/calendar
-  - Select: http://jedwatson.github.io/react-select/
+  - [ReactJS](https://facebook.github.io/react/)
+    - [react-datepicker](https://github.com/Hacker0x01/react-datepicker)
+    - [react-select](https://github.com/JedWatson/react-select)
 - Server
-  - Flask + Flask-Restful
+  - [Flask](http://flask.pocoo.org/)
+    - [flask-restful](https://github.com/flask-restful/flask-restful)

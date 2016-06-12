@@ -1,46 +1,27 @@
 import React, {PropTypes} from 'react';
 
-// Docs: https://github.com/JedWatson/react-select
 import Select from 'react-select';
 
+var TimeSelect = React.createClass({
+  propTypes:  {
+    onChange: PropTypes.func.isRequired,
+    timeSelected: PropTypes.object
+    // dateSelected: 
+  },
 
-var TimeSelect = function(props) {
-  var timeSlots = [
-    { value: '8', label: '8AM', disabled: true},
-    { value: '9', label: '9AM' },
-    { value: '10', label: '10AM' },
-    { value: '11', label: '11AM' },
-    { value: '12', label: '12PM' },
-    { value: '13', label: '1PM' },
-    { value: '14', label: '2PM' },
-    { value: '15', label: '3PM' },
-    { value: '16', label: '4PM' },
-  ];
-
-  var getOptions = function(input, callback) {
-    setTimeout(function() {
-      callback(null, {
-        options: timeSlots,
-        complete: true
-      });
-    }, 500);
-  };
-
-  return (
-          <Select.Async
-              name="form-field-name"
-              autosize={true}
-              placeholder="Select a time slot"
-              value={props.timeSelected}
-              loadOptions={getOptions}
-              onChange={props.onChange}
-          />
-          );
-}
-
-TimeSelect.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  timeSelected: PropTypes.object
-}
+  render: function() {
+    return (
+            <Select
+                name="form-field-name"
+                autosize={true}
+                placeholder="Select a time slot"
+                value={this.props.timeSelected}
+                options={this.props.timeOptions}
+                onChange={this.props.onChange}
+                disabled={this.props.dateSelected == null}
+            />
+            );
+    }
+});
 
 module.exports = TimeSelect;
