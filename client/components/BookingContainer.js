@@ -63,6 +63,9 @@ var BookingContainer = React.createClass({
             console.log('Disabling time slot: ', timeSlot);
             timeSlot['disabled'] = true;
           }
+          else {
+            timeSlot['disabled'] = false;
+          }
       });
       return timeOptions;
     },
