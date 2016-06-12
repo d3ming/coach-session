@@ -76,6 +76,7 @@ def test_sessions_get_compound():
     }
     res, status = sessions.get()
     assert res == {"default-coach_1467270000000T8": {
+        "id": "default-coach_1467270000000T8",
         "clientName": "Dong Ming",
         "clientPhone": "425-999-9457",
         "coachId": "default-coach",
@@ -115,6 +116,7 @@ def test_sessions_no_params():
 def test_session_get():
     result = test_session().get('d3ming_2016-06-06T10')
     assert result == {
+        "id": "d3ming_2016-06-06T10",
         "coachId": "d3ming",
         "clientPhone": "425-999-9457",
         "clientName": "Dong Ming",

@@ -23,6 +23,7 @@ var Home = React.createClass({
     var requestUrl = '/api/v1/sessions?coachId=' + this.state.coachId,
       fakeSessionsData = {
         "default-coach_1465628400000T8": {
+            "id": "default-coach_1465628400000T8",
             "clientName": "Dong Ming", 
             "clientPhone": "425-999-9457", 
             "coachId": "default-coach", 
@@ -30,6 +31,7 @@ var Home = React.createClass({
             "time": "8"
         }, 
         "default-coach_1467010800000T15": {
+            "id": "default-coach_1467010800000T15",
             "clientName": "Dong Ming", 
             "clientPhone": "425-999-9457", 
             "coachId": "default-coach", 
@@ -37,6 +39,7 @@ var Home = React.createClass({
             "time": "15"
         }, 
         "default-coach_1467097200000T9": {
+            "id": "default-coach_1467097200000T9",
             "clientName": "Dong Ming", 
             "clientPhone": "425-999-9457", 
             "coachId": "default-coach", 
@@ -44,6 +47,7 @@ var Home = React.createClass({
             "time": "9"
         }, 
         "default-coach_1467270000000T8": {
+            "id": "default-coach_1467270000000T8",
             "clientName": "Dong Ming", 
             "clientPhone": "425-999-9457", 
             "coachId": "default-coach", 

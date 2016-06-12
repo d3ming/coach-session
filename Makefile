@@ -21,7 +21,7 @@ test: lint pytest
 
 .PHONY: pytest
 pytest:
-	PYTHONPATH=server py.test --cov-config .coveragerc --cov-report=term-missing --cov=server server/test/
+	PYTHONPATH=server py.test -v --cov-config .coveragerc --cov-report=term-missing --cov=server server/test/
 
 .PHONY: webpack
 webpack:

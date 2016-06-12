@@ -17,6 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 DATA_FILE = os.path.join(os.path.dirname(__file__), 'sessions.json')
 INITIAL_DATA = {
     "default-coach_1467270000000T8": {
+        "id": "default-coach_1467270000000T8",
         "clientName": "Dong Ming",
         "clientPhone": "425-999-9457",
         "coachId": "default-coach",
@@ -27,8 +28,8 @@ INITIAL_DATA = {
 
 
 def parse_request_args():
-    # TODO: Consider refactoring this out to server.py
     parser = reqparse.RequestParser()
+    parser.add_argument('id')
     parser.add_argument('coachId')
     parser.add_argument('clientPhone')
     parser.add_argument('clientName')
@@ -47,11 +48,8 @@ def get_filtered_sessions(key, value, data):
 
 
 def load_sessions_data(data_filename=DATA_FILE):
-    # TODO: This is hacky, we should assert instead
-    if not os.path.exists(data_filename):
-        logging.warn('File does not exist at %s', data_filename)
-        return INITIAL_DATA
-
+    assert os.path.exists(data_filename), \
+        "File does not exist at {}".format(data_filename)
     with open(data_filename) as fp:
         data = json.load(fp)
         logging.debug('Loaded session data: %s', data)
