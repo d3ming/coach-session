@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/d3ming/coach-session.png?label=ready&title=Ready)](https://waffle.io/d3ming/coach-session)
 # COACH-SESSION
 
 Effortlessly book a coaching session
