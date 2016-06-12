@@ -2,3 +2,5 @@ node_modules/
 .cache/
 .coverage
 server/sessions.json
+.tox/
+*.egg-info/
