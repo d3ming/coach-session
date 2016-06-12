@@ -1,0 +1,5 @@
+#!/bin/bash
+# Add python and nodejs buildpacks
+heroku buildpacks:set heroku/python
+heroku buildpacks:add --index 1 heroku/nodejs
+heroku create

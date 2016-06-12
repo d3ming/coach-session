@@ -1,6 +1,9 @@
 install:
-	pip install -r requirements.txt
+	npm install && pip install -r requirements.txt
 
+.PHONY: dev
+dev:
+	npm run start
 
 .PHONY: lint
 lint: flake eslint
@@ -22,8 +25,11 @@ pytest: install
 
 .PHONY: webpack
 webpack:
-	webpack -p
+	./node_modules/webpack/bin/webpack.js -p
 
 .PHONY: start
-start: install webpack
+start:
 	python server.py
+
+.PHONY: clean-start
+clean-start: install webpack start
