@@ -96,6 +96,7 @@ class Session(Resource):
             'clientName': self.args['clientName'],
             'date': self.args['date'],
             'time': self.args['time'],
+            'id': self.args['id']
         }
         self.sessions[session_id] = session
         self.save_sessions_data()

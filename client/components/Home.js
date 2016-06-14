@@ -103,7 +103,8 @@ var Home = React.createClass({
         ? <Loading />
         :
       <MainContainer>
-          <SessionList sessionsList={this.state.sessionsList} />
+          <SessionList
+            sessionsList={this.state.sessionsList} />
           <Link to='/booking'>
             <Button bsStyle="primary" bsSize="large">Book Session!</Button>
           </Link>
