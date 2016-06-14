@@ -25,10 +25,10 @@ pytest:
 
 .PHONY: webpack
 webpack:
-	./node_modules/webpack/bin/webpack.js -p
+	./node_modules/webpack/bin/webpack.js
 
 .PHONY: start
-start:
+start: webpack
 	python server.py
 
 .PHONY: clean-start
