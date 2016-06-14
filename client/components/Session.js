@@ -1,21 +1,33 @@
 import React, {PropTypes} from 'react';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { SplitButton, MenuItem } from 'react-bootstrap';
 
-var Session = function(props) {
+var Session =  React.createClass({
+  propTypes: {
+    sessionData: PropTypes.object,
+    sessionId: PropTypes.string.isRequired,
+    sessionLabel: PropTypes.string.isRequired,
+    onSessionSelect: PropTypes.func.isRequired
+  },
+
+  handleSession: function(eventKey, event) {
+    console.log('Event: ', event);
+    console.log('EventKey', eventKey);
+
+    // Callback to parent to handle the event
+    this.props.onSessionSelect(this.props.sessionId, eventKey);
+  },
+  render: function() {
     return (
             <div>
               <p></p>
-              <DropdownButton title={props.sessionLabel} id={props.sessionLabel}>
+              <SplitButton title={this.props.sessionLabel}
+                id={this.props.sessionId}
+                onSelect={this.handleSession}>
                 <MenuItem eventKey="1">Cancel</MenuItem>
-              </DropdownButton>
+              </SplitButton>
             </div>
           );
-}
-
-Session.propTypes = {
-    sessionData: PropTypes.object,
-    sessionLabel: PropTypes.string.isRequired,
-  },
-
+      }
+});
 
 module.exports = Session;

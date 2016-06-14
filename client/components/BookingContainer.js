@@ -19,6 +19,7 @@ var BookingContainer = React.createClass({
             "clientName": clientName,
             "clientPhone": clientPhone,
             "coachId": coachId,
+            "id": sessionId,
             "date": sessionDate.format("YYYY-MM-DD"),
             "time": this.state.timeSelected.value
           };

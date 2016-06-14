@@ -3,7 +3,7 @@ import {transparentBg} from '../styles';
 
 function MainContainer(props) {
   return (
-    <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
+    <div className="col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
         {props.children}
     </div>
     );

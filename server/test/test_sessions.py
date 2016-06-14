@@ -131,7 +131,8 @@ def test_session_put():
         "coachId": "coach2",
         "time": "11",
         "date": "2016-06-23",
-        "clientName": "Dong Ming"
+        "clientName": "Dong Ming",
+        "id": "coach2_2016-06-23T11"
     }
     test_put_session = Session(
         sessions=TEST_SESSION_DATA, args=test_session_data)
