@@ -28,7 +28,7 @@ webpack:
 	./node_modules/webpack/bin/webpack.js
 
 .PHONY: start
-start: webpack
+start:
 	python server.py
 
 .PHONY: clean-start
